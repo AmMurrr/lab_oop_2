@@ -18,6 +18,8 @@ class Five {
         bool operator ==( const Five& other);
         bool operator >(const Five& other);
         bool operator <(const Five& other);
+        bool operator >=(const Five& other);
+        bool operator <=(const Five& other);
         bool operator !=(const Five& other);
 
         Five operator +(const Five& other);
