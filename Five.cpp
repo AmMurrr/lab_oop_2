@@ -2,7 +2,7 @@
 
 Five::Five() {
     _size = 0;
-    _five = new unsigned char[0]{};
+    _five = nullptr;
 }
 
 Five::Five(const size_t &n, unsigned char t) {
@@ -15,7 +15,7 @@ Five::Five(const size_t &n, unsigned char t) {
     
 }
 
-Five::Five(const std::initializer_list< unsigned char> &t) {
+Five::Five(const std::initializer_list<unsigned char> &t) {
     _size = t.size();
     _five = new unsigned char[_size]{};
     size_t i;
@@ -49,12 +49,12 @@ Five::Five(Five &&other) noexcept {
     for(size_t i = 0; i < _size; i++)
         _five[i] = other._five[i];
     other._size = 0;
-    delete other._five;
+    other._five = nullptr;
 }
 
 Five::~Five() noexcept {
     _size = 0;
-    delete _five;
+    _five = nullptr;
 }
 
 
@@ -189,8 +189,6 @@ Five Five::operator+(const Five &other) {
 Five Five::operator-(const Five &other) {
      if (other._size > _size)
         throw std::invalid_argument("У нас тут нет кода для отрицательных чисел\n");
- //   if(other._size < _size)
- //       flag = true;
     
     Five result_diff = Five(_size);
     int difference;
@@ -240,7 +238,6 @@ Five Five::operator-(const Five &other) {
         i--;
     }
         
-   // std::cout << (int)shift << std::endl;
     result_diff.resize(shift);
     
     return result_diff;
@@ -262,15 +259,11 @@ bool Five::validation(const std::string &t) {
     return true;
 }
 
-void Five::resize(signed char shift) {
- //   if (shift > _size)
-   //     throw std::invalid_argument("Как ты вообще смог получить отричательный размер при разности?");
-    
+void Five::resize(signed char shift) { 
     _size += shift;
     unsigned char* _resized_five = new unsigned char[_size]{};
     
     for(size_t i = 0; i < _size; ++i)
         _resized_five[i] = _five[i];
- //   delete _five;
     _five = _resized_five;
 }
