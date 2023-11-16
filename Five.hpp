@@ -29,7 +29,6 @@ public:
     Five operator=(const Five &other);
     
 
-
 private:
     
     unsigned char* _five;
